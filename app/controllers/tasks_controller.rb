@@ -23,10 +23,10 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:notice] = "Task has been created."
+      flash[:notice] = "Task has been updated."
       redirect_to [@project, @task]
     else
-      flash[:alert] = "Task has not been created."
+      flash[:alert] = "Task has not been updated."
       render action: "edit"
     end
   end
