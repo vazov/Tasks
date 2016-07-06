@@ -1,0 +1,12 @@
+<%= form_for [:admin, @assignment] do |f| %>
+
+<p>
+<%= f.label :team_id %><br />
+<%= f.collection_select :team_id, Team.order(:name), :id, :name, include_blank: true %>
+</p>
+<p>
+<%= f.label :project_id %><br />
+<%= f.collection_select :project_id, Project.order(:name), :id, :name, include_blank: true %>
+</p>
+<%= f.submit %>
+<% end %>

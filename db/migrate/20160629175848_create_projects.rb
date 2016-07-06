@@ -2,9 +2,11 @@ class CreateProjects < ActiveRecord::Migration
   def change
     create_table :projects do |t|
       t.string :name
-      t.string :summary
-      t.string :start_date
-      t.string :end_date
+      t.text :summary
+      t.datetime :start_date
+      t.datetime :end_date
+      
+      t.references :team, index: true, foreign_key: true
 
       t.timestamps null: false
     end

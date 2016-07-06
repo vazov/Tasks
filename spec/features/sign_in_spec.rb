@@ -6,7 +6,7 @@ feature "signing in." do
 
     visit '/'
     click_link 'Sign in'
-    fill_in 'First name', with: user.first_name
+    fill_in 'Name', with: user.first_name
     fill_in 'Password', with: user.password
     click_button "Sign in"
 
