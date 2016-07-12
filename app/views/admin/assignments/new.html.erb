@@ -1,3 +1,6 @@
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 <%= form_for [:admin, @assignment] do |f| %>
 
 <p>
@@ -8,5 +11,7 @@
 <%= f.label :project_id %><br />
 <%= f.collection_select :project_id, Project.order(:name), :id, :name, include_blank: true %>
 </p>
-<%= f.submit %>
+<%= f.submit "Create assignment", class: "btn btn-primary" %>
 <% end %>
+</div>
+</div>

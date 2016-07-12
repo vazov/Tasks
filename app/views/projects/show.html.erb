@@ -41,7 +41,7 @@
   </tbody>
 </table>
 
-<% admins_only do %>
+<% if can? :manage, Project %>
   <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-primary" %>
   <%= link_to "Delete Project",
   	project_path(@project),

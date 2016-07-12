@@ -5,6 +5,6 @@
   <% end %>
 </ul><br>
 
-<% admins_only do %>
+<% if can? :manage, Team %>
   <%= link_to "New Team", new_team_path %>
 <% end %>

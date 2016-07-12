@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :authorize_admin!, except: [:index, :show]
-  before_action :require_signin!
+  load_and_authorize_resource
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   
   def index

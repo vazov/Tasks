@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
-
-  resources :comments
+  
   root "projects#index"
+  devise_for :users
+  resources :users, :only => [:show]
 
   namespace :admin do
     root :to => "base#index"
     resources :assignments   
   end
-
-  get "/signin", to: "sessions#new"
-  post "/signin", to: "sessions#create"
-  get "/signout", to: "sessions#destroy"
-
+  
   get "/join", to: "users#join"
   get "/unjoin", to: "users#unjoin"
 
@@ -22,7 +19,6 @@ Rails.application.routes.draw do
   get "/remove_project", to: "teams#remove_project"
   
   post "/posts/:post_id/comments", to: "comments#add_comment", as: 'post/comments'
-  resources :users
 
   resources :projects do
     resources :tasks do
@@ -32,9 +28,9 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  resources :posts
-
   resources :tasks
+  resources :posts
+  resources :comments
 
   resources :teams do
     resources :projects

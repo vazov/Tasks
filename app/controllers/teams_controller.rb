@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authorize_admin!, except: [:index, :show]
+  load_and_authorize_resource
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   
   def show
     @team = Team.find(params[:id])
-    @member = current_user.teams.exists?(@team)
+    @member = current_user.teams.exists?(@team.id)
   end
 
   def edit

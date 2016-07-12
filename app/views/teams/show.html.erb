@@ -16,7 +16,9 @@
           <% @team.projects.each do |project| %>
             <li>
               <%= link_to project.name, [@team, project] %>
+              <% if can? :manage, Team %>
               <%= link_to "remove", remove_project_path(:id => @team.id, :project_id => project.id) %>
+              <% end %>
             </li>
           <% end %>
           </ul>
@@ -42,7 +44,7 @@
 </table>
 <br>
 
-<% admins_only do %>
+<% if can? :manage, Team %>
   <%= link_to "Edit Team", edit_team_path(@team), class: "btn btn-primary" %>
   <%= link_to "Delete Team",
   	team_path(@team),

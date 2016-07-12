@@ -27,6 +27,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'bootstrap-sass'
 gem 'cancancan', '~> 1.10'
 gem 'jquery-datatables-rails'
+gem 'devise'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
