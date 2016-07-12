@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authorize_admin!, except: [:index, :show]
+  before_action :require_signin!
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -11,7 +12,8 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @project = Project.find(params[:id])
+    @posts = @project.posts
+    @post = Post.new
   end
 
   def edit
@@ -41,7 +43,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    @project = Project.find(project_id)
     @project.destroy
     flash[:notice] = "Project has been destroyed."
     redirect_to projects_path

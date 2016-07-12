@@ -12,6 +12,7 @@ class TeamsController < ApplicationController
   
   def show
     @team = Team.find(params[:id])
+    @member = current_user.teams.exists?(@team)
   end
 
   def edit
@@ -47,6 +48,19 @@ class TeamsController < ApplicationController
     redirect_to projects_path
   end
 
+  def remove_project
+    team = Team.find(params[:id])
+    project = Project.find(params[:project_id])
+    if team.projects.delete(project)
+      flash[:notice] = "Project has been removed from team"
+      redirect_to team
+    else
+      flash[:alert] = "Team has not been updated."
+      redirect_to team
+    end
+  end
+  
+
   private
   def team_params
   	  params.require(:team).permit(:name)
@@ -58,7 +72,4 @@ class TeamsController < ApplicationController
         flash[:alert] = "The team you were looking for could not be found."
         redirect_to teams_path
     end
-
-  
-
 end

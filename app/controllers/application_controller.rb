@@ -26,4 +26,12 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
     helper_method :current_user
+
+    def set_project
+      @project = Project.find(params[:project_id])
+      # rescue ActiveRecord::RecordNotFound
+      #   flash[:alert] = "The project you were looking for could not be found."
+      #   redirect_to projects_path
+    end
+    helper_method :set_project
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :comment do
-    content "MyText"
+    content "MyString"
   end
 end

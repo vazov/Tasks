@@ -17,14 +17,14 @@
 </p>
 <p>
 <%= f.label :summary %><br />
-<%= f.text_field :summary %>
+<%= f.text_area :summary %>
 </p>
 <p>
 <%= f.label :start_date %><br />
-<%= f.text_field :start_date%>
+<%= f.date_field :start_date%>
 </p>
 <p>
 <%= f.label :end_date %><br />
-<%= f.text_field :end_date %>
-<%= f.submit %>
+<%= f.date_field :end_date %>
+<%= f.submit "Project", class: "btn btn-primary btn-small" %>
 <% end %>

@@ -1,0 +1,22 @@
+<h3>My Projects</h3>
+<table id="projects">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Summary</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+  </tr>
+  </thead>
+  
+  <tbody>
+  <% @projects.each do |project| %>
+  <tr>
+    <td><%= link_to project.name, project %></td>
+    <td><%= project.summary %></td>
+    <td><%= project.start_date %></td>
+    <td><%= project.end_date %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

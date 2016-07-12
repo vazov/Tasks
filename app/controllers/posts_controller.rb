@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:create]
   # GET /posts
   # GET /posts.json
   def index
@@ -9,6 +10,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   # GET /posts/new
@@ -19,21 +22,23 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
   end
-
+  
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    @post = @project.posts.build(post_params)
+    #post can be without user
+    if current_user
+      current_user.posts << @post
     end
+
+    if @post.save
+      flash[:notice] = "Post has been created."
+      redirect_to @project
+    else
+      flash[:alert] = "Post has not been created."
+      render "new"
+    end  
   end
 
   # PATCH/PUT /posts/1
@@ -66,8 +71,8 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    #Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :project_id)
     end
 end

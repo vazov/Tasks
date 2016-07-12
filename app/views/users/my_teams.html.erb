@@ -1,0 +1,10 @@
+<h1>My Teams</h1>
+<ul class="users">
+  <% @teams.each do |team| %>
+     <li><%= link_to team.name, team %></li>
+  <% end %>
+</ul><br>
+
+<% admins_only do %>
+  <%= link_to "New Team", new_team_path %>
+<% end %>

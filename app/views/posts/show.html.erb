@@ -1,9 +1,45 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
 
+<%= form_for [@post, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :New_comment %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create comment", class: "btn btn-primary"%>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= link_to comment.content, comment %></td><br>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p></p>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

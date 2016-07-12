@@ -1,3 +1,19 @@
-Welcome to Tasks's Admin Lounge. <br>
-You may assign projects to teams
-<%= link_to "Teams", new_admin_assignment_path %>
+<h2>Welcome to Tasks's Admin Lounge.</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Create new team</th>
+      <th>Create new project</th>
+      <th>Assign projects to teams</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= link_to "New Team", new_team_path %></td>
+        <td><%= link_to "New Project", new_project_path %></td>
+        <td><%= link_to "Make assignment", new_admin_assignment_path %></td>
+      </tr>
+  </tbody>
+</table>
+<br>

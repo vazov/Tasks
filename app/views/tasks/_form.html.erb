@@ -19,8 +19,28 @@
 
   <p>
     <%= f.label :content %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
+  </p>
+  
+  <p>
+    <%= f.label :status %>
+    <%= f.text_field :status %>
   </p>
 
-  <%= f.submit %>
+  <p>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date%>
+  </p>
+
+  <p>
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date %>
+  </p>  
+
+  <p>
+    <%= f.label :estimation %>
+    <%= f.text_field :estimation %>
+  </p>
+
+  <%= f.submit "Task", class: "btn btn-primary btn-small"%>
 <% end %>

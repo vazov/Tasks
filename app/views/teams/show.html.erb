@@ -1,20 +1,54 @@
 <h2><%= @team.name %></h2>
 
-<ul id='projects'>
-  Our current projects:
-  <% @team.projects.each do |project| %>
-     <li>
-      <%= link_to project.name, [@team, project] %>
-    </li>
-  <% end %>
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Our current projects</th>
+      <th>Team members</th>
+      <th>Join/Unjoin</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td>
+          <ul>
+          <% @team.projects.each do |project| %>
+            <li>
+              <%= link_to project.name, [@team, project] %>
+              <%= link_to "remove", remove_project_path(:id => @team.id, :project_id => project.id) %>
+            </li>
+          <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+          <% @team.users.each do |user| %>
+            <li>
+              <%= link_to user.first_name, user %>
+            </li>
+          <% end %>
+          </ul>
+        </td>
+        <td> 
+          <% if @member %>  
+            <%= link_to "Unjoin from team", unjoin_path(:team_id => @team.id), class: "btn btn-danger"%>
+          <%else%>
+            <%= link_to "Join to Team", join_path(:team_id => @team.id), class: "btn btn-success" %>
+          <% end %>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<br>
 
 <% admins_only do %>
-  <%= link_to "Edit Team", edit_team_path(@team) %>
+  <%= link_to "Edit Team", edit_team_path(@team), class: "btn btn-primary" %>
   <%= link_to "Delete Team",
   	team_path(@team),
   	method: :delete,
   	data: { confirm:
-  	"Are you sure you want to delete this team?" } %> 
+  	"Are you sure you want to delete this team?" },
+    class: "btn btn-danger"%> 
 <% end %>
   <%= link_to "New Project", new_team_project_path(@team) %>
