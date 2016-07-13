@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     resources :tasks do
       resources :comments
     end
-    resources :teams
     resources :posts
+    resources :teams
   end
 
   resources :tasks
@@ -35,5 +35,4 @@ Rails.application.routes.draw do
   resources :teams do
     resources :projects
   end
-
 end

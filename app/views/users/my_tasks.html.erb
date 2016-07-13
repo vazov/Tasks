@@ -1,30 +1,31 @@
 <h3>My Tasks</h3>
-
-<% @projects.each do |project| %>
-<h2>Tasks for <%=project.name%> </h2>
 <table id="tasks">
   <thead>
-  <tr>
-    <th>Title</th>
+  <tr> 
+    <th>Task Title</th>
     <th>Content</th>
     <th>Status</th>
     <th>Start_date</th>
     <th>Due_date</th>
     <th>Estimation</th>
+    <th>From Project</th>
   </tr>
   </thead>
-  
-  <tbody>
+
+  <% @projects.each do |project| %>
   <% project.tasks.each do |task| %>
-  <tr>
+  <tbody>
+  <tr>  
     <td><%= link_to task.title, [project,task] %></td>
     <td><%= task.content %></td>
     <td><%= task.status %></td>
     <td><%= task.start_date %></td>
     <td><%= task.due_date %></td>
     <td><%= task.estimation %></td>
+    <td><%= link_to project.name, project %></td>
   </tr>
-  <% end %>
   </tbody>
+  <% end %>
+  <% end %>
 </table>
-<% end %>
+

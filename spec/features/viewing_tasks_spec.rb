@@ -5,12 +5,12 @@ feature "Viewing tasks" do
     matrix = FactoryGirl.create(:project,
                                     name: "Matrix")
 
-		#user = FactoryGirl.create(:user)
+		
 		task = FactoryGirl.create(:task,
 						project: matrix,
 						title: "J5LS_V43C",
 						content: "Adding 3-6 cylinders engine support!")
-		#ticket.update(user: user)
+		
 
     AEM = FactoryGirl.create(:project,
                                       name: "AEMtuner_Software")
@@ -18,7 +18,7 @@ feature "Viewing tasks" do
             project: AEM,
             title: "Color",
             content: "Colored tables and maps.")
-		#ticket.update(user: user)
+		
 
     visit '/'
   end

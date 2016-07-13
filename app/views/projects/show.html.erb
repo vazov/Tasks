@@ -14,7 +14,7 @@
   <% end %>
 </ul>
 
-<h2>Our tasks</h2>
+<h3>Our tasks</h3>
 <table id="tasks">
   <thead>
   <tr>
@@ -74,20 +74,11 @@
   </div>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+<h2>Posts</h2>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.content, post %></td><br>
-        <td><%= post.user.first_name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @project.posts.each do |post| %>
+  <div class="post_wrapper">
+    <h2 class="title"><%= link_to post.content, post %></h2>
+    <p class="date_and_author"><%= "#{post.created_at.strftime("%B %d, %Y")} by #{post.user.first_name}"%></p>
+  </div>
+<% end %>

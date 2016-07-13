@@ -28,7 +28,8 @@ gem 'bootstrap-sass'
 gem 'cancancan', '~> 1.10'
 gem 'jquery-datatables-rails'
 gem 'devise'
-
+gem 'faker'
+gem 'ffaker'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -40,7 +41,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'capybara'
-  
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
 end
 

@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :team_users, :class_name => 'TeamUser', dependent: :destroy
-  has_many :tasks
-  has_many :posts
+  has_many :tasks, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :teams, through: :team_users
   validates :first_name, presence: true
   validates :last_name, presence: true
