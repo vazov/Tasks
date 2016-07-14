@@ -1,28 +1,20 @@
-== README
+Описание приложения:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Корень приложения - список проектов. На странице команды находятся списки участников и проектов, над которыми команда работает. Администратор создает команды и проекты, назначает проекты команде. Управляет всеми ресурсами (командами, проектами, пользователями, задачами, постами, комментариями).
 
-Things you may want to cover:
+Пользователь может просматривать страницу любой команды. Может добавляться к любой из команд, автоматически получая проекты и задачи над которыми работает команда. Может добавлять и удалять задачи к проектам, может создавать посты к проектам. Может просматривать профили пользователей, проекты и задачи других команд.
 
-* Ruby version
+sql запросы:
 
-* System dependencies
+2. DISTINCT пачытай для чаго гэтая інструкцыя і паспрабуй напісаць з ёй запыт.  напішы 2 розных селекта. з паўторамі і без. калі трэба забеў паўтараючыхся данных у базу. 
 
-* Configuration
+с повторами:
+SELECT `projects`.* FROM `projects` INNER JOIN tasks ON tasks.project_id = projects.id  ORDER BY `projects`.`name` ASC
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+без повторов
+SELECT DISTINCT `projects`.* FROM `projects` INNER JOIN tasks ON tasks.project_id = projects.id  ORDER BY `projects`.`name` ASC
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+3. Неабходна выбраць колькасць пастоў(або каментаў) для кожнага праекта.
+
+SELECT COUNT(posts.id) AS count_posts_id, projects.name AS projects_name FROM `projects` LEFT OUTER JOIN posts on projects.id=posts.project_id GROUP BY projects.name
